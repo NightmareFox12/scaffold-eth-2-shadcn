@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ScaffoldFooter } from "./ScaffoldFooter";
 import { ScaffoldHeader } from "./ScaffoldHeader";
 import { ScaffoldSidebar } from "./ScaffoldSidebar";
 import { SidebarInset, SidebarProvider } from "./ui/shadcn/sidebar";
@@ -17,11 +18,12 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <ScaffoldSidebar />
       <SidebarInset>
         <ScaffoldHeader />
         {children}
+        <ScaffoldFooter />
       </SidebarInset>
     </SidebarProvider>
     // <>

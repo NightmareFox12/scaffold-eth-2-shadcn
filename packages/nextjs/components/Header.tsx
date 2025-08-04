@@ -4,28 +4,11 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BrainCircuit, BugIcon } from "lucide-react";
+import { menuLinks } from "./ScaffoldHeader";
+import { BrainCircuit } from "lucide-react";
 import { hardhat } from "viem/chains";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick, useTargetNetwork } from "~~/hooks/scaffold-eth";
-
-type HeaderMenuLink = {
-  label: string;
-  href: string;
-  icon?: React.ReactNode;
-};
-
-export const menuLinks: HeaderMenuLink[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugIcon className="h-4 w-4" />,
-  },
-];
 
 export const HeaderMenuLinks = () => {
   const pathname = usePathname();

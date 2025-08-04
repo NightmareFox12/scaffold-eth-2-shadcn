@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "../ui/shadcn/button";
 import { Banknote } from "lucide-react";
 import { createWalletClient, http, parseEther } from "viem";
 import { hardhat } from "viem/chains";
@@ -61,9 +62,9 @@ export const FaucetButton = () => {
       }
       data-tip="Grab funds from faucet"
     >
-      <button className="btn btn-secondary btn-sm px-2 rounded-full" onClick={sendETH} disabled={loading}>
+      <Button className="btn btn-secondary btn-sm px-2 rounded-full" onClick={sendETH} disabled={loading}>
         {!loading ? <Banknote className="h-4 w-4" /> : <span className="loading loading-spinner loading-xs"></span>}
-      </button>
+      </Button>
     </div>
   );
 };
