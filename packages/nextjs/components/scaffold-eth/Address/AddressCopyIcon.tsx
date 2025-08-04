@@ -1,4 +1,5 @@
-import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { CircleCheck, Files } from "lucide-react";
+import { Button } from "~~/components/ui/shadcn/button";
 import { useCopyToClipboard } from "~~/hooks/scaffold-eth/useCopyToClipboard";
 
 export const AddressCopyIcon = ({ className, address }: { className?: string; address: string }) => {
@@ -6,18 +7,14 @@ export const AddressCopyIcon = ({ className, address }: { className?: string; ad
     useCopyToClipboard();
 
   return (
-    <button
+    <Button
       onClick={e => {
         e.stopPropagation();
         copyAddressToClipboard(address);
       }}
       type="button"
     >
-      {isAddressCopiedToClipboard ? (
-        <CheckCircleIcon className={className} aria-hidden="true" />
-      ) : (
-        <DocumentDuplicateIcon className={className} aria-hidden="true" />
-      )}
-    </button>
+      {isAddressCopiedToClipboard ? <CircleCheck className={className} /> : <Files className={className} />}
+    </Button>
   );
 };

@@ -1,4 +1,4 @@
-import { InformationCircleIcon } from "@heroicons/react/20/solid";
+import { Info } from "lucide-react";
 
 export const InheritanceTooltip = ({ inheritedFrom }: { inheritedFrom?: string }) => (
   <>
@@ -7,7 +7,8 @@ export const InheritanceTooltip = ({ inheritedFrom }: { inheritedFrom?: string }
         className="tooltip tooltip-top tooltip-accent px-2 md:break-normal"
         data-tip={`Inherited from: ${inheritedFrom}`}
       >
-        <InformationCircleIcon className="h-4 w-4" aria-hidden="true" />
+        {/* <InformationCircleIcon className="h-4 w-4" aria-hidden="true" /> */}
+        <Info />
       </span>
     )}
   </>

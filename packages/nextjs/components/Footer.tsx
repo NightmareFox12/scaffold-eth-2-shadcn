@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { hardhat } from "viem/chains";
-import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { HeartIcon } from "@heroicons/react/24/outline";
 import { SwitchTheme } from "~~/components/SwitchTheme";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Faucet } from "~~/components/scaffold-eth";
@@ -25,7 +23,7 @@ export const Footer = () => {
             {nativeCurrencyPrice > 0 && (
               <div>
                 <div className="btn btn-primary btn-sm font-normal gap-1 cursor-auto">
-                  <CurrencyDollarIcon className="h-4 w-4" />
+                  {/* <CurrencyDollarIcon className="h-4 w-4" /> */}
                   <span>{nativeCurrencyPrice.toFixed(2)}</span>
                 </div>
               </div>
@@ -34,7 +32,7 @@ export const Footer = () => {
               <>
                 <Faucet />
                 <Link href="/blockexplorer" passHref className="btn btn-primary btn-sm font-normal gap-1">
-                  <MagnifyingGlassIcon className="h-4 w-4" />
+                  {/* <MagnifyingGlassIcon className="h-4 w-4" /> */}
                   <span>Block Explorer</span>
                 </Link>
               </>
@@ -53,9 +51,7 @@ export const Footer = () => {
             </div>
             <span>·</span>
             <div className="flex justify-center items-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block h-4 w-4" /> at
-              </p>
+              <p className="m-0 text-center">{/* Built with <HeartIcon className="inline-block h-4 w-4" /> at */}</p>
               <a
                 className="flex justify-center items-center gap-1"
                 href="https://buidlguidl.com/"
