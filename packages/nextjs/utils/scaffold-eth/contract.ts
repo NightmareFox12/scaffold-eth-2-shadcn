@@ -414,7 +414,7 @@ export const simulateContractWriteAndNotifyError = async ({
   } catch (error) {
     const parsedError = getParsedErrorWithAllAbis(error, chainId);
 
-    toast.error(parsedError);
+    toast.error(parsedError, { closeButton: true });
     throw error;
   }
 };

@@ -51,7 +51,7 @@ export const ReadOnlyFunctionForm = ({
   useEffect(() => {
     if (error) {
       const parsedError = getParsedError(error);
-      toast.error(parsedError);
+      toast.error(parsedError, { closeButton: true });
     }
   }, [error]);
 

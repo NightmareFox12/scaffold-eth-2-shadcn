@@ -45,6 +45,7 @@ const BlockExplorer: NextPage = () => {
             instead
           </p>
         </>,
+        { closeButton: true },
       );
     }
   }, [
@@ -67,6 +68,7 @@ const BlockExplorer: NextPage = () => {
             <code className="italic bg-base-300 text-base font-bold">scaffold.config.ts</code>
           </p>
         </>,
+        { closeButton: true },
       );
     }
   }, [hasError]);
