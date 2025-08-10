@@ -118,7 +118,7 @@ export const EtherInput = ({
               <ArrowRightLeft className="text-primary" />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>
+          <TooltipContent side="right">
             {nativeCurrencyPrice > 0 ? (
               <p>Change to {displayUsdMode ? "ETH" : "USD"}</p>
             ) : isNativeCurrencyPriceFetching ? (

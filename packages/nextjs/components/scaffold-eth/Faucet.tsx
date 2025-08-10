@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "../ui/shadcn/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/shadcn/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/shadcn/dialog";
 import { Banknote } from "lucide-react";
 import { Address as AddressType, createWalletClient, http, parseEther } from "viem";
 import { hardhat } from "viem/chains";
@@ -99,79 +92,32 @@ export const Faucet = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Local Faucet</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your account and remove your data from our
-            servers.
-          </DialogDescription>
         </DialogHeader>
         <article className="flex flex-col justify-center items-center gap-2">
-          <Address address={faucetAddress} onlyEnsOrAddress />
+          <div className="w-full flex justify-center flex-col items-center gap-2">
+            <span className="text-sm font-bold">From:</span>
+            <Address address={faucetAddress} onlyEnsOrAddress />
+          </div>
 
           <div>
             <span className="text-sm font-bold pl-3">Available:</span>
             <Balance address={faucetAddress} />
           </div>
 
-          <div className="flex flex-col justify-center gap-5">
+          <div className="relative flex w-full px-10 flex-col justify-center gap-5">
             <AddressInput
               placeholder="Destination Address"
               value={inputAddress ?? ""}
               onChange={value => setInputAddress(value as AddressType)}
             />
             <EtherInput placeholder="Amount to send" value={sendValue} onChange={value => setSendValue(value)} />
-            <Button className=" rounded-full" onClick={sendETH} disabled={loading}>
-              {!loading ? <Banknote className="h-6 w-6" /> : <span className="loading loading-spinner loading-sm" />}
+            <Button onClick={sendETH} disabled={loading}>
+              {!loading ? <Banknote className="mt-0.5" /> : <span className="loading loading-spinner loading-sm" />}
               Send
             </Button>
           </div>
         </article>
       </DialogContent>
     </Dialog>
-
-    // <div>
-    //   <label htmlFor="faucet-modal" className="btn btn-primary btn-sm font-normal gap-1">
-    //     {/* <BanknotesIcon className="h-4 w-4" /> */}
-    //     <span>Faucet</span>
-    //   </label>
-    //   <input type="checkbox" id="faucet-modal" className="modal-toggle" />
-    //   <label htmlFor="faucet-modal" className="modal cursor-pointer">
-    //     <label className="modal-box relative">
-    //       {/* dummy input to capture event onclick on modal box */}
-    //       <input className="h-0 w-0 absolute top-0 left-0" />
-    //       <h3 className="text-xl font-bold mb-3">Local Faucet</h3>
-    //       <label htmlFor="faucet-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
-    //         ✕
-    //       </label>
-    //       <div className="space-y-3">
-    //         <div className="flex space-x-4">
-    //           <div>
-    //             <span className="text-sm font-bold">From:</span>
-    //             <Address address={faucetAddress} onlyEnsOrAddress />
-    //           </div>
-    //           <div>
-    //             <span className="text-sm font-bold pl-3">Available:</span>
-    //             <Balance address={faucetAddress} />
-    //           </div>
-    //         </div>
-    //         <div className="flex flex-col space-y-3">
-    //           <AddressInput
-    //             placeholder="Destination Address"
-    //             value={inputAddress ?? ""}
-    //             onChange={value => setInputAddress(value as AddressType)}
-    //           />
-    //           <EtherInput placeholder="Amount to send" value={sendValue} onChange={value => setSendValue(value)} />
-    //           <button className="h-10 btn btn-primary btn-sm px-2 rounded-full" onClick={sendETH} disabled={loading}>
-    //             {!loading ? (
-    //               <Banknote className="h-6 w-6" />
-    //             ) : (
-    //               <span className="loading loading-spinner loading-sm"></span>
-    //             )}
-    //             <span>Send</span>
-    //           </button>
-    //         </div>
-    //       </div>
-    //     </label>
-    //   </label>
-    // </div>
   );
 };
