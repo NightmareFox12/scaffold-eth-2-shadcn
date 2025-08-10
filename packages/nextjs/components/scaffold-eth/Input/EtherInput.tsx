@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { ArrowRightLeft } from "lucide-react";
 import { CommonInputProps, InputBase, SIGNED_NUMBER_REGEX } from "~~/components/scaffold-eth";
+import { Button } from "~~/components/ui/shadcn/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~~/components/ui/shadcn/tooltip";
 import { useDisplayUsdMode } from "~~/hooks/scaffold-eth/useDisplayUsdMode";
 import { useGlobalState } from "~~/services/store/store";
 
@@ -103,25 +105,29 @@ export const EtherInput = ({
       placeholder={placeholder}
       onChange={handleChangeNumber}
       disabled={disabled}
-      prefix={<span className="pl-4 -mr-2 text-accent self-center">{displayUsdMode ? "$" : "Ξ"}</span>}
+      prefix={<span className="pl-4 -mr-2 text-primary self-center">{displayUsdMode ? "$" : "Ξ"}</span>}
       suffix={
-        <div
-          className={`${
-            nativeCurrencyPrice > 0
-              ? ""
-              : "tooltip tooltip-secondary before:content-[attr(data-tip)] before:right-[-10px] before:left-auto before:transform-none"
-          }`}
-          data-tip={isNativeCurrencyPriceFetching ? "Fetching price" : "Unable to fetch price"}
-        >
-          <button
-            className="btn btn-primary h-[2.2rem] min-h-[2.2rem]"
-            onClick={toggleDisplayUsdMode}
-            disabled={!displayUsdMode && !nativeCurrencyPrice}
-            type="button"
-          >
-            <ArrowRightLeft className="h-3 w-3 cursor-pointer" aria-hidden="true" />
-          </button>
-        </div>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              onClick={toggleDisplayUsdMode}
+              disabled={!displayUsdMode && !nativeCurrencyPrice}
+              type="button"
+            >
+              <ArrowRightLeft className="text-primary" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            {nativeCurrencyPrice > 0 ? (
+              <p>Change to {displayUsdMode ? "ETH" : "USD"}</p>
+            ) : isNativeCurrencyPriceFetching ? (
+              <p>Fetching price</p>
+            ) : (
+              <p>Unable to fetch price</p>
+            )}
+          </TooltipContent>
+        </Tooltip>
       }
     />
   );
