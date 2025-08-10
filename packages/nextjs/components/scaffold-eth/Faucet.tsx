@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/shadcn/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/shadcn/dialog";
 import { Banknote } from "lucide-react";
+import { toast } from "sonner";
 import { Address as AddressType, createWalletClient, http, parseEther } from "viem";
 import { hardhat } from "viem/chains";
 import { useAccount } from "wagmi";
 import { Address, AddressInput, Balance, EtherInput } from "~~/components/scaffold-eth";
 import { useTransactor } from "~~/hooks/scaffold-eth";
-import { notification } from "~~/utils/scaffold-eth";
 
 // Account index to use from generated hardhat accounts.
 const FAUCET_ACCOUNT_INDEX = 0;
@@ -38,7 +38,7 @@ export const Faucet = () => {
         const accounts = await localWalletClient.getAddresses();
         setFaucetAddress(accounts[FAUCET_ACCOUNT_INDEX]);
       } catch (error) {
-        notification.error(
+        toast.error(
           <>
             <p className="font-bold mt-0 mb-1">Cannot connect to local provider</p>
             <p className="m-0">

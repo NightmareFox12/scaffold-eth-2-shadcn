@@ -6,6 +6,7 @@ import { Hash, Transaction, TransactionReceipt, formatEther, formatUnits } from 
 import { hardhat } from "viem/chains";
 import { usePublicClient } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
+import { Button } from "~~/components/ui/shadcn/button";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { decodeTransactionData, getFunctionDetails } from "~~/utils/scaffold-eth";
 import { replacer } from "~~/utils/scaffold-eth/common";
@@ -39,9 +40,7 @@ const TransactionComp = ({ txHash }: { txHash: Hash }) => {
 
   return (
     <div className="container mx-auto mt-10 mb-20 px-10 md:px-0">
-      <button className="btn btn-sm btn-primary" onClick={() => router.back()}>
-        Back
-      </button>
+      <Button onClick={() => router.back()}>Back</Button>
       {transaction ? (
         <div className="overflow-x-auto">
           <h2 className="text-3xl font-bold mb-4 text-center text-primary-content">Transaction Details</h2>{" "}

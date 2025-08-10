@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaucetButton } from "./scaffold-eth/FaucetButton";
+import { RainbowKitCustomConnectButton } from "./scaffold-eth/RainbowKitCustomConnectButton";
 import { Button } from "./ui/shadcn/button";
 import { BugIcon, Home } from "lucide-react";
 import { hardhat } from "viem/chains";
@@ -58,7 +59,7 @@ export const ScaffoldHeader = () => {
             );
           })}
         </nav>
-        {/* <RainbowKitCustomConnectButton /> */}
+        <RainbowKitCustomConnectButton />
         {isLocalNetwork && <FaucetButton />}
       </div>
     </header>
