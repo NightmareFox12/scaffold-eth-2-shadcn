@@ -34,7 +34,7 @@ export const ScaffoldHeader = () => {
 
   return (
     <header className="w-full">
-      <div className="mx-4 h-16 flex items-center justify-between gap-2 md:gap-4 lg:gap-5">
+      <div className="mx-4 h-16 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 justify-center">
           <Link href="/" passHref className="flex items-center gap-2 ml-4 mr-6 shrink-0">
             <div className="flex relative w-10 h-10">

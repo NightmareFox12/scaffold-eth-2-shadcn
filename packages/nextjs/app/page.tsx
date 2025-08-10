@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { Bug, Search } from "lucide-react";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~~/components/ui/shadcn/card";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
@@ -38,30 +40,37 @@ const Home: NextPage = () => {
           </p>
         </div>
 
-        <div className="grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col md:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              {/* <BugAntIcon className="h-8 w-8 fill-secondary" /> */}
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
+        <article className="grow bg-base-300 w-full px-8 py-8">
+          <div className="flex justify-center items-center gap-12 flex-col w-full md:flex-row">
+            <Card className="flex-1 w-full justify-center h-[250px]">
+              <CardHeader>
+                <CardTitle className="flex justify-center">
+                  <Bug className="size-12" />
+                </CardTitle>
+                <CardDescription className="text-center">Tinker with your smart contract using the </CardDescription>
+              </CardHeader>
+              <CardContent className="flex justify-center">
+                <Link href="/debug" passHref className="underline">
                   Debug Contracts
                 </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              {/* <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" /> */}
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
+              </CardContent>
+            </Card>
+
+            <Card className="flex-1 w-full justify-center h-[250px]">
+              <CardHeader>
+                <CardTitle className="flex justify-center">
+                  <Search className="size-12" />
+                </CardTitle>
+                <CardDescription className="text-center">Explore your local transactions with the</CardDescription>
+              </CardHeader>
+              <CardContent className="flex justify-center">
+                <Link href="/blockexplorer" passHref className="underline">
                   Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
+                </Link>
+              </CardContent>
+            </Card>
           </div>
-        </div>
+        </article>
       </div>
     </>
   );
