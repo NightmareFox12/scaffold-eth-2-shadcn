@@ -1,4 +1,4 @@
-import { CheckCircle, Files } from "lucide-react";
+import { CheckCircle, ChevronDown, Files } from "lucide-react";
 import { TransactionReceipt } from "viem";
 import { ObjectFieldDisplay } from "~~/app/debug/_components/contract";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "~~/components/ui/shadcn/collapsible";
@@ -10,7 +10,7 @@ export const TxReceipt = ({ txResult }: { txResult: TransactionReceipt }) => {
   const { copyToClipboard: copyTxResultToClipboard, isCopiedToClipboard: isTxResultCopiedToClipboard } =
     useCopyToClipboard();
   return (
-    <div className="flex text-sm w-full bg-secondary flex-1 py-2 px-1 gap-2">
+    <div className="flex text-sm w-full bg-secondary flex-1 py-2 px-1 gap-2 rounded-md">
       <div className="mt-1 pl-2">
         {isTxResultCopiedToClipboard ? (
           <CheckCircle aria-hidden="true" />
@@ -22,8 +22,9 @@ export const TxReceipt = ({ txResult }: { txResult: TransactionReceipt }) => {
           />
         )}
       </div>
-      <Collapsible>
-        <CollapsibleTrigger className="font-semibold flex-1 text-start cursor-pointer">
+      <Collapsible className="w-full">
+        <CollapsibleTrigger className="font-semibold flex flex-1 text-start cursor-pointer gap-1 w-full">
+          <ChevronDown />
           Transaction Receipt
         </CollapsibleTrigger>
         <CollapsibleContent>
