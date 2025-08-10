@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { rainbowkitBurnerWallet } from "burner-connector";
+import { toast } from "sonner";
 import { useCopyToClipboard } from "~~/hooks/scaffold-eth";
-import { getParsedError, notification } from "~~/utils/scaffold-eth";
+import { getParsedError } from "~~/utils/scaffold-eth";
 
 const BURNER_WALLET_PK_KEY = "burnerWallet.pk";
 
@@ -15,10 +16,10 @@ export const RevealBurnerPKModal = () => {
       const burnerPK = storage?.getItem(BURNER_WALLET_PK_KEY);
       if (!burnerPK) throw new Error("Burner wallet private key not found");
       await copyToClipboard(burnerPK);
-      notification.success("Burner wallet private key copied to clipboard");
+      toast.success("Burner wallet private key copied to clipboard");
     } catch (e) {
       const parsedError = getParsedError(e);
-      notification.error(parsedError);
+      toast.error(parsedError);
       if (modalCheckboxRef.current) modalCheckboxRef.current.checked = false;
     }
   };

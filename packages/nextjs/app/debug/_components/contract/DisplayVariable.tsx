@@ -5,11 +5,12 @@ import { InheritanceTooltip } from "./InheritanceTooltip";
 import { displayTxResult } from "./utilsDisplay";
 import { Abi, AbiFunction } from "abitype";
 import { ArrowUp } from "lucide-react";
+import { toast } from "sonner";
 import { Address } from "viem";
 import { useReadContract } from "wagmi";
 import { useAnimationConfig } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { getParsedError, notification } from "~~/utils/scaffold-eth";
+import { getParsedError } from "~~/utils/scaffold-eth";
 
 type DisplayVariableProps = {
   contractAddress: Address;
@@ -52,7 +53,7 @@ export const DisplayVariable = ({
   useEffect(() => {
     if (error) {
       const parsedError = getParsedError(error);
-      notification.error(parsedError);
+      toast.error(parsedError);
     }
   }, [error]);
 

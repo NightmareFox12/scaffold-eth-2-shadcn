@@ -1,6 +1,5 @@
 import { getParsedError } from "./getParsedError";
 import { AllowedChainIds } from "./networks";
-import { notification } from "./notification";
 import { MutateOptions } from "@tanstack/react-query";
 import {
   Abi,
@@ -12,6 +11,7 @@ import {
   ExtractAbiFunction,
 } from "abitype";
 import type { ExtractAbiFunctionNames } from "abitype";
+import { toast } from "sonner";
 import type { Simplify } from "type-fest";
 import type { MergeDeepRecord } from "type-fest/source/merge-deep";
 import {
@@ -349,17 +349,13 @@ export const getParsedErrorWithAllAbis = (error: any, chainId: AllowedChainIds):
     const signatureMatch = originalParsedError.match(/0x[a-fA-F0-9]{8}/);
     const signature = signatureMatch ? signatureMatch[0] : "";
 
-    if (!signature) {
-      return originalParsedError;
-    }
+    if (!signature) return originalParsedError;
 
     try {
       // Get all deployed contracts for the current chain
       const chainContracts = deployedContractsData[chainId as keyof typeof deployedContractsData];
 
-      if (!chainContracts) {
-        return originalParsedError;
-      }
+      if (!chainContracts) return originalParsedError;
 
       // Build a lookup table of error signatures to error names
       const errorLookup: Record<string, { name: string; contract: string; signature: string }> = {};
@@ -418,7 +414,7 @@ export const simulateContractWriteAndNotifyError = async ({
   } catch (error) {
     const parsedError = getParsedErrorWithAllAbis(error, chainId);
 
-    notification.error(parsedError);
+    toast.error(parsedError);
     throw error;
   }
 };
