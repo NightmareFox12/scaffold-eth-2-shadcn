@@ -1,5 +1,8 @@
-import { ChangeEvent, FocusEvent, ReactNode, useCallback, useEffect, useRef } from "react";
+"use client";
+
+import { ChangeEvent, FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { CommonInputProps } from "~~/components/scaffold-eth";
+import { Input } from "~~/components/ui/shadcn/input";
 
 type InputBaseProps<T> = CommonInputProps<T> & {
   error?: boolean;
@@ -19,6 +22,8 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
   suffix,
   reFocus,
 }: InputBaseProps<T>) => {
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+
   const inputReft = useRef<HTMLInputElement>(null);
 
   let modifier = "";
@@ -37,20 +42,29 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
 
   // Runs only when reFocus prop is passed, useful for setting the cursor
   // at the end of the input. Example AddressInput
+  // const onFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
   const onFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
     if (reFocus !== undefined) {
       e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length);
     }
+    setIsFocus(true);
   };
+
+  useEffect(() => {
+    inputReft.current?.addEventListener("focusout", () => setIsFocus(false));
+  }, []);
+
   useEffect(() => {
     if (reFocus !== undefined && reFocus === true) inputReft.current?.focus();
   }, [reFocus]);
 
   return (
-    <div className={`flex border-2 border-base-300 bg-base-200 rounded-full text-accent ${modifier}`}>
+    <div
+      className={`flex border-1 border-input bg-base-200 rounded-sm text-accent ${isFocus ? "focus-visible:border-ring ring-ring/50 ring-[3px] transition" : "transition"} ${modifier}`}
+    >
       {prefix}
-      <input
-        className="input input-ghost focus-within:border-transparent focus:outline-hidden focus:bg-transparent h-[2.2rem] min-h-[2.2rem] px-4 border w-full font-medium placeholder:text-accent/70 text-base-content/70 focus:text-base-content/70"
+      <Input
+        className="border-0 focus-within:border-transparent focus-visible:ring-0 text-primary"
         placeholder={placeholder}
         name={name}
         value={value?.toString()}
@@ -64,3 +78,19 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
     </div>
   );
 };
+
+//  <div className={`flex border-2 border-base-300 bg-base-200 rounded-full text-accent ${modifier}`}>
+//       {prefix}
+//       <input
+//         className="input input-ghost focus-within:border-transparent focus:outline-hidden focus:bg-transparent h-[2.2rem] min-h-[2.2rem] px-4 border w-full font-medium placeholder:text-accent/70 text-base-content/70 focus:text-base-content/70"
+//         placeholder={placeholder}
+//         name={name}
+//         value={value?.toString()}
+//         onChange={handleChange}
+//         disabled={disabled}
+//         autoComplete="off"
+//         ref={inputReft}
+//         onFocus={onFocus}
+//       />
+//       {suffix}
+//     </div>

@@ -32,11 +32,7 @@ export const ScaffoldFooter = () => {
             {isLocalNetwork && (
               <>
                 <Faucet />
-                <Button
-                  onClick={() => {
-                    router.push("/blockexplorer");
-                  }}
-                >
+                <Button onClick={() => router.push("/blockexplorer")}>
                   <Search />
                   Block Explorer
                 </Button>
