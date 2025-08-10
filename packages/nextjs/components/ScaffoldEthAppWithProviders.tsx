@@ -5,6 +5,7 @@ import { ScaffoldFooter } from "./ScaffoldFooter";
 import { ScaffoldHeader } from "./ScaffoldHeader";
 import { ScaffoldSidebar } from "./ScaffoldSidebar";
 import { SidebarInset, SidebarProvider } from "./ui/shadcn/sidebar";
+import { Toaster } from "./ui/shadcn/sonner";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
@@ -19,6 +20,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SidebarProvider defaultOpen={false}>
+      <Toaster richColors={true} position="top-center" />
       <ScaffoldSidebar />
       <SidebarInset>
         <ScaffoldHeader />
