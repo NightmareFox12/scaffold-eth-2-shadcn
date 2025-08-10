@@ -48,6 +48,7 @@ export const IntegerInput = ({
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
+                variant="secondary"
                 className={`${disabled ? "cursor-not-allowed" : "cursor-pointer"} font-semibold`}
                 onClick={multiplyBy1e18}
                 disabled={disabled}

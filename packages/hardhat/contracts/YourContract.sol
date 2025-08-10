@@ -18,6 +18,7 @@ contract YourContract {
     string public greeting = "Building Unstoppable Apps!!!";
     bool public premium = false;
     uint256 public totalCounter = 0;
+    uint256 public number;
     mapping(address => uint) public userGreetingCounter;
 
     // Events: a way to emit log statements from smart contract that can be listened to by external parties
@@ -61,6 +62,11 @@ contract YourContract {
         // emit: keyword used to trigger an event
         emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, msg.value);
     }
+
+    function setNumber(uint256 _number) public {
+        number = _number;
+    }
+
 
     /**
      * Function that allows the owner to withdraw all the Ether in the contract

@@ -1,11 +1,12 @@
 "use client";
 
-import { AddressCopyIcon } from "./AddressCopyIcon";
 import { AddressLinkWrapper } from "./AddressLinkWrapper";
+import { CircleCheck, Files } from "lucide-react";
 import { Address as AddressType, getAddress, isAddress } from "viem";
 import { normalize } from "viem/ens";
 import { useEnsAvatar, useEnsName } from "wagmi";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
+import { useCopyToClipboard } from "~~/hooks/scaffold-eth/useCopyToClipboard";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 
@@ -83,6 +84,8 @@ export const Address = ({
   onlyEnsOrAddress = false,
 }: AddressProps) => {
   const checkSumAddress = address ? getAddress(address) : undefined;
+  const { copyToClipboard: copyAddressToClipboard, isCopiedToClipboard: isAddressCopiedToClipboard } =
+    useCopyToClipboard();
 
   const { targetNetwork } = useTargetNetwork();
 
@@ -121,7 +124,7 @@ export const Address = ({
             width: (blockieSizeMap[blockieSize] * 24) / blockieSizeMap["base"],
             height: (blockieSizeMap[blockieSize] * 24) / blockieSizeMap["base"],
           }}
-        ></div>
+        />
         <div className="flex flex-col space-y-1">
           {!onlyEnsOrAddress && (
             <div className={`ml-1.5 skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}>
@@ -167,8 +170,8 @@ export const Address = ({
               </AddressLinkWrapper>
             </span>
           ))}
-        <div className="flex">
-          <span className={`mt-1 mx-1.5 ${textSizeMap[addressSize]} font-normal`}>
+        <div className="flex justify-center">
+          <span className={`ml-1 ${textSizeMap[addressSize]} font-normal`}>
             <AddressLinkWrapper
               disableAddressLink={disableAddressLink}
               blockExplorerAddressLink={blockExplorerAddressLink}
@@ -176,10 +179,18 @@ export const Address = ({
               {onlyEnsOrAddress ? displayEnsOrAddress : displayAddress}
             </AddressLinkWrapper>
           </span>
-          <AddressCopyIcon
-            className={`ml-1 ${copyIconSizeMap[addressSize]} cursor-pointer`}
-            address={checkSumAddress}
-          />
+
+          {isAddressCopiedToClipboard ? (
+            <CircleCheck className="ml-1" />
+          ) : (
+            <Files
+              className="ml-1 size-4 cursor-pointer"
+              onClick={e => {
+                e.stopPropagation();
+                copyAddressToClipboard(copyIconSizeMap[addressSize]);
+              }}
+            />
+          )}
         </div>
       </div>
     </div>

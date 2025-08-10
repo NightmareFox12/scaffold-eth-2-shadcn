@@ -1,6 +1,9 @@
 import { ReactElement, useState } from "react";
+import { ArrowRightLeft } from "lucide-react";
 import { TransactionBase, TransactionReceipt, formatEther, isAddress, isHex } from "viem";
 import { Address } from "~~/components/scaffold-eth";
+import { Button } from "~~/components/ui/shadcn/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~~/components/ui/shadcn/tooltip";
 import { replacer } from "~~/utils/scaffold-eth/common";
 
 type DisplayContent =
@@ -57,17 +60,17 @@ const NumberDisplay = ({ value }: { value: bigint }) => {
   }
 
   return (
-    <div className="flex items-baseline">
-      {isEther ? "Ξ" + formatEther(value) : String(value)}
-      <span
-        className="tooltip tooltip-secondary font-sans ml-2"
-        data-tip={isEther ? "Multiply by 1e18" : "Divide by 1e18"}
-      >
-        <button className="btn btn-ghost btn-circle btn-xs" onClick={() => setIsEther(!isEther)}>
-          {/* <ArrowsRightLeftIcon className="h-3 w-3 opacity-65" /> */}
-        </button>
-      </span>
-    </div>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button variant="ghost" onClick={() => setIsEther(!isEther)}>
+          <ArrowRightLeft className="opacity-65" />
+          {isEther ? "Ξ" + formatEther(value) : String(value)}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="right">
+        <p>{isEther ? "Multiply by 1e18" : "Divide by 1e18"}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
@@ -83,9 +86,9 @@ export const ObjectFieldDisplay = ({
   leftPad?: boolean;
 }) => {
   return (
-    <div className={`flex flex-row items-baseline ${leftPad ? "ml-4" : ""}`}>
+    <div className={`text-sm ${leftPad ? "ml-4" : ""}`}>
       <span className="text-base-content/60 mr-2">{name}:</span>
-      <span className="text-base-content">{displayTxResult(value, size)}</span>
+      <span className="text-base-content break-all text-sm">{displayTxResult(value, size)}</span>
     </div>
   );
 };
