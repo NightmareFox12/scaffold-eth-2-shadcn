@@ -28,9 +28,9 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
 
   let modifier = "";
   if (error) {
-    modifier = "border-error";
+    modifier = "border-red-500";
   } else if (disabled) {
-    modifier = "border-disabled bg-base-300";
+    modifier = "border-input bg-base-200";
   }
 
   const handleChange = useCallback(
@@ -42,7 +42,6 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
 
   // Runs only when reFocus prop is passed, useful for setting the cursor
   // at the end of the input. Example AddressInput
-  // const onFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
   const onFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
     if (reFocus !== undefined) {
       e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length);
@@ -60,7 +59,7 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
 
   return (
     <div
-      className={`flex border-1 border-input bg-base-200 rounded-sm text-accent ${isFocus ? "focus-visible:border-ring ring-ring/50 ring-[3px] transition" : "transition"} ${modifier}`}
+      className={`flex border-1 bg-base-200 rounded-sm text-accent ${isFocus ? `focus-visible:border-ring ring-[3px] ${error ? "ring-red-500/50" : "ring-ring/50"} transition` : "transition"} ${modifier}`}
     >
       {prefix}
       <Input
