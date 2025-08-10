@@ -6,6 +6,7 @@ import { ContractReadMethods } from "./ContractReadMethods";
 import { ContractVariables } from "./ContractVariables";
 import { ContractWriteMethods } from "./ContractWriteMethods";
 import { Address, Balance } from "~~/components/scaffold-eth";
+import { Card } from "~~/components/ui/shadcn/card";
 import { useDeployedContractInfo, useNetworkColor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { ContractName } from "~~/utils/scaffold-eth/contract";
@@ -71,30 +72,34 @@ export const ContractUI = ({ contractName, className = "" }: ContractUIProps) =>
         </div>
         <div className="col-span-1 lg:col-span-2 flex flex-col gap-6">
           <div className="z-10">
-            <div className="bg-base-100 rounded-3xl shadow-md shadow-secondary border border-base-300 flex flex-col mt-10 relative">
-              <div className="h-[5rem] w-[5.5rem] bg-base-300 absolute self-start rounded-[22px] -top-[38px] -left-[1px] -z-10 py-[0.65rem] shadow-lg shadow-base-300">
+            <div className="flex flex-col mt-10 relative">
+              <div className="h-[5rem] w-[5.5rem] bg-base-300 absolute self-start rounded-2xl -top-[38px] -left-[1px] -z-10 py-[0.65rem] shadow-lg shadow-base-300 border-1">
                 <div className="flex items-center justify-center space-x-2">
                   <p className="my-0 text-sm">Read</p>
                 </div>
               </div>
-              <div className="p-5 divide-y divide-base-300">
-                <ContractReadMethods deployedContractData={deployedContractData} />
-              </div>
+              <Card>
+                <div className="p-5 divide-y divide-base-300">
+                  <ContractReadMethods deployedContractData={deployedContractData} />
+                </div>
+              </Card>
             </div>
           </div>
           <div className="z-10">
-            <div className="bg-base-100 rounded-3xl shadow-md shadow-secondary border border-base-300 flex flex-col mt-10 relative">
-              <div className="h-[5rem] w-[5.5rem] bg-base-300 absolute self-start rounded-[22px] -top-[38px] -left-[1px] -z-10 py-[0.65rem] shadow-lg shadow-base-300">
+            <div className="flex-col mt-10 relative">
+              <div className="h-[5rem] w-[5.5rem] bg-base-300 absolute self-start rounded-2xl -top-[38px] -left-[1px] -z-10 py-[0.65rem] shadow-lg shadow-base-300 border-1">
                 <div className="flex items-center justify-center space-x-2">
                   <p className="my-0 text-sm">Write</p>
                 </div>
               </div>
-              <div className="p-5 divide-y divide-base-300">
-                <ContractWriteMethods
-                  deployedContractData={deployedContractData}
-                  onChange={triggerRefreshDisplayVariables}
-                />
-              </div>
+              <Card>
+                <div className="p-5 divide-y divide-base-300">
+                  <ContractWriteMethods
+                    deployedContractData={deployedContractData}
+                    onChange={triggerRefreshDisplayVariables}
+                  />
+                </div>
+              </Card>
             </div>
           </div>
         </div>

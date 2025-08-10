@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { parseEther } from "viem";
 import { CommonInputProps, InputBase, IntegerVariant, isValidInteger } from "~~/components/scaffold-eth";
+import { Button } from "~~/components/ui/shadcn/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~~/components/ui/shadcn/tooltip";
 
 type IntegerInputProps = CommonInputProps<string> & {
   variant?: IntegerVariant;
@@ -43,19 +45,21 @@ export const IntegerInput = ({
       suffix={
         !inputError &&
         !disableMultiplyBy1e18 && (
-          <div
-            className="space-x-4 flex tooltip tooltip-top tooltip-secondary before:content-[attr(data-tip)] before:right-[-10px] before:left-auto before:transform-none"
-            data-tip="Multiply by 1e18 (wei)"
-          >
-            <button
-              className={`${disabled ? "cursor-not-allowed" : "cursor-pointer"} font-semibold px-4 text-accent`}
-              onClick={multiplyBy1e18}
-              disabled={disabled}
-              type="button"
-            >
-              ∗
-            </button>
-          </div>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                className={`${disabled ? "cursor-not-allowed" : "cursor-pointer"} font-semibold`}
+                onClick={multiplyBy1e18}
+                disabled={disabled}
+                type="button"
+              >
+                ∗
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              <p>Multiply by 1e18 (wei)</p>
+            </TooltipContent>
+          </Tooltip>
         )
       }
     />

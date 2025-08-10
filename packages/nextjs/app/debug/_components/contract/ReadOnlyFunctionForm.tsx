@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { InheritanceTooltip } from "./InheritanceTooltip";
 import { Abi, AbiFunction } from "abitype";
+import { Loader } from "lucide-react";
 import { Address } from "viem";
 import { useReadContract } from "wagmi";
 import {
@@ -13,6 +14,7 @@ import {
   getParsedContractFunctionArgs,
   transformAbiFunction,
 } from "~~/app/debug/_components/contract";
+import { Button } from "~~/components/ui/shadcn/button";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getParsedError, notification } from "~~/utils/scaffold-eth";
 
@@ -76,8 +78,8 @@ export const ReadOnlyFunctionForm = ({
         <InheritanceTooltip inheritedFrom={inheritedFrom} />
       </p>
       {inputElements}
-      <div className="flex flex-col md:flex-row justify-between gap-2 flex-wrap">
-        <div className="grow w-full md:max-w-[80%]">
+      <div className="flex  md:flex-row justify-between gap-2 flex-wrap">
+        <div className="grow basis-0 w-full md:max-w-[80%]">
           {result !== null && result !== undefined && (
             <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
               <p className="font-bold m-0 mb-1">Result:</p>
@@ -85,17 +87,17 @@ export const ReadOnlyFunctionForm = ({
             </div>
           )}
         </div>
-        <button
-          className="btn btn-secondary btn-sm self-end md:self-start"
+        <Button
+          size="sm"
           onClick={async () => {
             const { data } = await refetch();
             setResult(data);
           }}
           disabled={isFetching}
         >
-          {isFetching && <span className="loading loading-spinner loading-xs"></span>}
+          {isFetching && <Loader className="animate-spin" />}
           Read 📡
-        </button>
+        </Button>
       </div>
     </div>
   );
