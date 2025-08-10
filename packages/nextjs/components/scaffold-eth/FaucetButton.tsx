@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "../ui/shadcn/button";
-import { Banknote } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/shadcn/tooltip";
+import { Banknote, Loader } from "lucide-react";
 import { createWalletClient, http, parseEther } from "viem";
 import { hardhat } from "viem/chains";
 import { useAccount } from "wagmi";
@@ -54,17 +55,15 @@ export const FaucetButton = () => {
   const isBalanceZero = balance && balance.value === 0n;
 
   return (
-    <div
-      className={
-        !isBalanceZero
-          ? "ml-1"
-          : "ml-1 tooltip tooltip-bottom tooltip-primary tooltip-open font-bold before:left-auto before:transform-none before:content-[attr(data-tip)] before:-translate-x-2/5"
-      }
-      data-tip="Grab funds from faucet"
-    >
-      <Button className="btn btn-secondary btn-sm px-2 rounded-full" onClick={sendETH} disabled={loading}>
-        {!loading ? <Banknote className="h-4 w-4" /> : <span className="loading loading-spinner loading-xs"></span>}
-      </Button>
-    </div>
+    <Tooltip defaultOpen={isBalanceZero}>
+      <TooltipTrigger asChild>
+        <Button variant="outline" className="rounded-full" onClick={sendETH}>
+          {!loading ? <Banknote /> : <Loader className="animate-spin" />}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Grab funds from faucet</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
