@@ -129,7 +129,12 @@ export const WriteOnlyFunctionForm = ({
           )}
           <Tooltip defaultOpen={writeDisabled} open={writeDisabled}>
             <TooltipTrigger asChild>
-              <Button size="sm" disabled={writeDisabled || isPending} onClick={handleWrite}>
+              <Button
+                className="dark:bg-secondary dark:text-black dark:hover:bg-secondary/80"
+                size="sm"
+                disabled={writeDisabled || isPending}
+                onClick={handleWrite}
+              >
                 {isPending && <Loader className="animate-spin" />}
                 Send 💸
               </Button>

@@ -90,6 +90,7 @@ export const ReadOnlyFunctionForm = ({
         </div>
         <Button
           size="sm"
+          className="dark:bg-secondary dark:text-black dark:hover:bg-secondary/80"
           onClick={async () => {
             const { data } = await refetch();
             setResult(data);

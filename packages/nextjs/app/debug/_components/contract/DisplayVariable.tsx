@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { InheritanceTooltip } from "./InheritanceTooltip";
 import { displayTxResult } from "./utilsDisplay";
 import { Abi, AbiFunction } from "abitype";
-import { ArrowUp } from "lucide-react";
+import { Loader, RefreshCcw } from "lucide-react";
 import { toast } from "sonner";
 import { Address } from "viem";
 import { useReadContract } from "wagmi";
@@ -60,15 +60,12 @@ export const DisplayVariable = ({
   return (
     <div className="space-y-1 pb-2">
       <div className="flex items-center">
-        <h3 className="font-medium text-lg mb-0 break-all">{abiFunction.name}</h3>
-        <button className="btn btn-ghost btn-xs" onClick={async () => await refetch()}>
-          {isFetching ? (
-            <span className="loading loading-spinner loading-xs"></span>
-          ) : (
-            // <ArrowPathIcon className="h-3 w-3 cursor-pointer" aria-hidden="true" />
-            <ArrowUp />
-          )}
-        </button>
+        <h3 className="font-medium text-lg mb-0 mr-2 break-all">{abiFunction.name}</h3>
+        {isFetching ? (
+          <Loader className="animate-spin" />
+        ) : (
+          <RefreshCcw className="cursor-pointer size-4" onClick={async () => await refetch()} />
+        )}
         <InheritanceTooltip inheritedFrom={inheritedFrom} />
       </div>
       <div className="text-base-content/80 flex flex-col items-start">
