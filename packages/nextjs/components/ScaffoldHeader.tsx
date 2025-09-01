@@ -33,7 +33,7 @@ export const ScaffoldHeader = () => {
   const pathname = usePathname();
 
   return (
-    <header className="w-full">
+    <header className="w-full border-b">
       <div className="mx-4 h-16 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 justify-center">
           <Link href="/" passHref className="flex items-center gap-2 ml-4 mr-6 shrink-0">
