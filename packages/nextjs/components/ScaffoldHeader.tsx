@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import { FaucetButton } from "./scaffold-eth/FaucetButton";
 import { RainbowKitCustomConnectButton } from "./scaffold-eth/RainbowKitCustomConnectButton";
 import { Button } from "./ui/shadcn/button";
-import { BugIcon, Home } from "lucide-react";
+import { useSidebar } from "./ui/shadcn/sidebar";
+import { BugIcon, Home, Menu } from "lucide-react";
 import { hardhat } from "viem/chains";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
@@ -31,12 +32,13 @@ export const ScaffoldHeader = () => {
   const { targetNetwork } = useTargetNetwork();
   const isLocalNetwork = targetNetwork.id === hardhat.id;
   const pathname = usePathname();
+  const { toggleSidebar } = useSidebar();
 
   return (
     <header className="w-full border-b">
       <div className="mx-4 h-16 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 justify-center">
-          <Link href="/" passHref className="flex items-center gap-2 ml-4 mr-6 shrink-0">
+          <Link href="/" passHref className="hidden md:flex items-center gap-2 ml-4 mr-6 shrink-0">
             <div className="flex relative w-10 h-10">
               <Image src="/logo.svg" alt="SE2 logo" className="cursor-pointer" fill />
             </div>
@@ -58,6 +60,11 @@ export const ScaffoldHeader = () => {
               </Link>
             );
           })}
+        </nav>
+        <nav className="flex flex-1 md:hidden">
+          <Button onClick={toggleSidebar} variant="default" size="icon">
+            <Menu className="w-4 h-4" />
+          </Button>
         </nav>
         <RainbowKitCustomConnectButton />
         {isLocalNetwork && <FaucetButton />}
