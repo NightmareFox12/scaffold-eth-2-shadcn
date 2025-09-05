@@ -1,13 +1,13 @@
 # 🏗 Scaffold-ETH 2 + _Shadcn_
 
 <h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
+  <a href="https://docs.scaffoldeth.io">Scaffold-ETH 2 Documentation</a> |
+  <a href="https://ui.shadcn.com">Shadcn Documentation</a>
 </h4>
 
-![Home Page](https://github.com/user-attachments/assets/be4f92b5-9d29-40df-a460-8c13a7c1440b) 
-
-![Debug Contracts tab](https://github.com/user-attachments/assets/8d12bcb3-cde4-48ed-bbfa-8b8ae11a0283)
+<img width="2472" height="1384" alt="Home Page" src="https://github.com/user-attachments/assets/70f8754e-35ba-471b-b53b-9bc23d366f6c" />
+<br/>
+<img width="2472" height="1384" alt="Debug Contracts Page" src="https://github.com/user-attachments/assets/2bcacfe9-3b84-4a54-8030-2db9e51533b1" />
 
 ## Requirements
 
@@ -19,13 +19,49 @@ Before you begin, you need to install the following tools:
 
 ## Quickstart
 
-## Documentation
-Visit our [docs](https://docs.scaffoldeth.io) to learn all the technical details and guides of Scaffold-ETH 2.
+> 1️⃣ Clone repository
+```
+git clone https://github.com/scaffold-eth/scaffold-eth-2.git my-app 
+cd my-app
+rm -rf .git
+```
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+> 2️⃣ Install dependens
+```
+yarn install
+```
 
-## Contributing to Scaffold-ETH 2
+> 3️⃣ Initialize your own Git repository
+```
+git init
+git add .
+git commit -m "Initial commit from Scaffold-ETH 2"
+```
 
-We welcome contributions to Scaffold-ETH 2!
+> [!IMPORTANT]
+> If you want to add more [shadcn](https://ui.shadcn.com/) components, you must add the following command inside the nextjs folder
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+```
+cd packages/nextjs/
+npx shadcn@latest add button
+```
+
+## UI Components (Shadcn) already added
+
+> [!NOTE]
+> All components added so far do not need to be overwritten.
+> You can find them at ``` components/ui/shadcn ```
+* Button
+* Card
+* Collapsible
+* Dialog
+* Dropdown Menu
+* Input
+* Scroll Area
+* Separator
+* Sheet
+* Sidebar
+* Skeleton
+* Sonner
+* Switch
+* Tooltip
