@@ -35,7 +35,7 @@ export const ScaffoldHeader = () => {
   const { toggleSidebar } = useSidebar();
 
   return (
-    <header className="w-full border-b bg-primary-foreground dark:bg-primary dark:text-primary-foreground dark:border-b-muted-foreground">
+    <header className="w-full border-b bg-secondary">
       <div className="mx-4 h-16 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 justify-center">
           <Link href="/" passHref className="hidden md:flex items-center gap-2 ml-4 mr-6 shrink-0">
@@ -53,14 +53,7 @@ export const ScaffoldHeader = () => {
             const isActive = pathname === href;
             return (
               <Link key={href} href={href}>
-                <Button
-                  variant={isActive ? "default" : "ghost"}
-                  className={
-                    !isActive
-                      ? "border-[0.5px]"
-                      : "dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/80"
-                  }
-                >
+                <Button variant={isActive ? "default" : "ghost"} className={!isActive ? "border-[0.5px]" : ""}>
                   {icon}
                   <span>{label}</span>
                 </Button>

@@ -57,7 +57,7 @@ export const FaucetButton = () => {
   return (
     <Tooltip defaultOpen={isBalanceZero}>
       <TooltipTrigger asChild>
-        <Button variant="outline" size="icon" onClick={sendETH}>
+        <Button size="icon" onClick={sendETH}>
           {!loading ? <Banknote /> : <Loader className="animate-spin" />}
         </Button>
       </TooltipTrigger>
