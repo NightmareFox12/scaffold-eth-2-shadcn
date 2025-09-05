@@ -5,6 +5,10 @@
   <a href="https://ui.shadcn.com">Shadcn Documentation</a>
 </h4>
 
+## 📝 Description
+This project is based on Scaffold-ETH 2 and integrates the modern Shadcn UI framework, used by teams at companies such as Vercel, Twitter/X, ElevenLabs, and many others. The goal is to introduce cutting-edge frontend practices into the existing stack, helping developers build elegant, scalable dApps with a modern experience.
+
+## 👁️ Preview
 <img width="2472" height="1384" alt="Home Page" src="https://github.com/user-attachments/assets/70f8754e-35ba-471b-b53b-9bc23d366f6c" />
 <br/>
 <img width="2472" height="1384" alt="Debug Contracts Page" src="https://github.com/user-attachments/assets/2bcacfe9-3b84-4a54-8030-2db9e51533b1" />
