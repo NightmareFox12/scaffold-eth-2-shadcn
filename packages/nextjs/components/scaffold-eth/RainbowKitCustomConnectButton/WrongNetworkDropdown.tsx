@@ -15,7 +15,7 @@ export const WrongNetworkDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="bg-destructive hover:bg-destructive/80">
+        <Button variant="destructive">
           <ChevronDown className="w-4 h-4 " />
           Wrong Network
         </Button>

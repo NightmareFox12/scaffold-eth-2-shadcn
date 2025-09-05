@@ -59,7 +59,7 @@ export const InputBase = <T extends { toString: () => string } | undefined = str
 
   return (
     <div
-      className={`dark:bg-secondary flex border-1 bg-base-200 rounded-sm text-accent ${isFocus ? `focus-visible:border-ring ring-[3px] ${error ? "ring-red-500/50" : "ring-ring/50"} transition` : "transition"} ${modifier}`}
+      className={`flex border-1 bg-base-200 rounded-sm text-accent ${isFocus ? `focus-visible:border-ring ring-[3px] ${error ? "ring-red-500/50" : "ring-ring/50"} transition` : "transition"} ${modifier}`}
     >
       {prefix}
       <Input

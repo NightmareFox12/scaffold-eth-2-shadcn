@@ -22,7 +22,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
     <SidebarProvider defaultOpen={false}>
       <Toaster richColors={true} position="top-center" />
       <ScaffoldSidebar />
-      <SidebarInset className="dark:bg-foreground dark:text-primary-foreground">
+      <SidebarInset>
         <ScaffoldHeader />
         {children}
         <ScaffoldFooter />
