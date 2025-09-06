@@ -55,6 +55,8 @@ npx shadcn@latest add button
 > [!NOTE]
 > All components added so far do not need to be overwritten.
 > You can find them at ``` components/ui/shadcn ```
+
+* Badge
 * Button
 * Card
 * Collapsible
@@ -68,4 +70,5 @@ npx shadcn@latest add button
 * Skeleton
 * Sonner
 * Switch
+* Table
 * Tooltip
