@@ -53,7 +53,7 @@ export const ScaffoldHeader = () => {
             const isActive = pathname === href;
             return (
               <Link key={href} href={href}>
-                <Button variant={isActive ? "default" : "ghost"} className={!isActive ? "border-[0.5px]" : ""}>
+                <Button variant={isActive ? "default" : "outline"}>
                   {icon}
                   <span>{label}</span>
                 </Button>
