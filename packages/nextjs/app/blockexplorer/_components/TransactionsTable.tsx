@@ -19,9 +19,9 @@ export const TransactionsTable = ({ blocks, transactionReceipts }: TransactionsT
   const { targetNetwork } = useTargetNetwork();
 
   return (
-    <Table>
+    <Table className="border rounded-lg">
       <TableCaption>Transactions</TableCaption>
-      <TableHeader className="bg-secondary ">
+      <TableHeader className="bg-secondary">
         <TableRow>
           <TableHead className="w-[100px]">Transaction Hash</TableHead>
           <TableHead className="w-[100px]">Function Called</TableHead>
@@ -33,14 +33,14 @@ export const TransactionsTable = ({ blocks, transactionReceipts }: TransactionsT
         </TableRow>
       </TableHeader>
       <TableBody>
-        {blocks.map((block, y) =>
+        {blocks.map(block =>
           (block.transactions as TransactionWithFunction[]).map(tx => {
             const receipt = transactionReceipts[tx.hash];
             const timeMined = new Date(Number(block.timestamp) * 1000).toLocaleString();
             const functionCalled = tx.input.substring(0, 10);
 
             return (
-              <TableRow key={tx.hash} className={`hover h-12 ${y % 2 !== 0 ? "bg-secondary" : "bg-secondary/50"}`}>
+              <TableRow key={tx.hash} className={"hover h-12 "}>
                 <TableCell>
                   <TransactionHash hash={tx.hash} />
                 </TableCell>
@@ -50,7 +50,6 @@ export const TransactionsTable = ({ blocks, transactionReceipts }: TransactionsT
                 </TableCell>
                 <TableCell>{block.number?.toString()}</TableCell>
                 <TableCell>{timeMined}</TableCell>
-
                 <TableCell>
                   <Address address={tx.from} size="sm" onlyEnsOrAddress />
                 </TableCell>
