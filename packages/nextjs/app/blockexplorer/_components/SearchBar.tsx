@@ -2,15 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
 import { isAddress, isHex } from "viem";
 import { hardhat } from "viem/chains";
 import { usePublicClient } from "wagmi";
+import { Button } from "~~/components/ui/shadcn/button";
+import { Input } from "~~/components/ui/shadcn/input";
 
 export const SearchBar = () => {
-  const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
-
   const client = usePublicClient({ chainId: hardhat.id });
+
+  //states
+  const [searchInput, setSearchInput] = useState<string>("");
 
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -33,17 +37,19 @@ export const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center justify-end mb-5 space-x-3 mx-5">
-      <input
-        className="border-primary bg-base-100 text-base-content placeholder:text-base-content/50 p-2 mr-2 w-full md:w-1/2 lg:w-1/3 rounded-md shadow-md focus:outline-hidden focus:ring-2 focus:ring-accent"
-        type="text"
-        value={searchInput}
-        placeholder="Search by hash or address"
-        onChange={e => setSearchInput(e.target.value)}
-      />
-      <button className="btn btn-sm btn-primary" type="submit">
-        Search
-      </button>
-    </form>
+    <div className="w-full flex items-center justify-end mb-5 space-x-3 mx-5">
+      <form onSubmit={handleSearch} className="w-full sm:w-4/12 flex gap-2">
+        <Button type="submit" size="icon">
+          <Search />
+        </Button>
+
+        <Input
+          type="search"
+          placeholder="Search by hash or address"
+          value={searchInput}
+          onChange={e => setSearchInput(e.target.value)}
+        />
+      </form>
+    </div>
   );
 };
